@@ -31,3 +31,18 @@ PlaygroundPage.current.liveView = imageView
 class Foo {}
 let foo = Foo()
 // César hade rätt!
+
+// 2017-12-14
+// ----------
+// César tror att `UIButton.setTitle(_:for:)` alltid animerar titeln. Tim tror att det finns en viss
+// `UIButtonType` (förmodligen `UIButtonType.custom`) som stänger gör att titeln inte animeras.
+let button = UIButton(type: .custom)
+button.setTitle("First title", for: .normal)
+button.sizeToFit()
+
+PlaygroundPage.current.liveView = button
+
+DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+	button.setTitle("Second title", for: .normal)
+}
+// Tim hade rätt!
