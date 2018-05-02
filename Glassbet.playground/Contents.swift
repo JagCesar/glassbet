@@ -46,3 +46,27 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
 	button.setTitle("Second title", for: .normal)
 }
 // Tim hade rätt!
+
+// 2018-05-02
+// ----------
+// Setup: Vi skapar en UIView och lägger till den i vyhierarkin. Vi sätter `isHidden = true` på vyn och animerar
+// sedan alphan till 1.0 genom UIView-animationer.
+// César säger att i completion blocket så kommer `isHidden == false` och vyn kommer synas.
+// Tim säger att i completion blocket så kommer `isHidden == true` och vyn kommer inte synas, trots att `alpha == 1.0`.
+let containerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 400.0, height: 400.0))
+containerView.backgroundColor = .white
+
+let view = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+view.backgroundColor = .red
+view.isHidden = true
+containerView.addSubview(view)
+
+PlaygroundPage.current.liveView = containerView
+
+UIView.animate(withDuration: 2.0, animations: {
+	view.alpha = 1.0
+}) { (_) in
+	print(view.isHidden)
+	print(view.alpha)
+}
+// Tim hade rätt!
