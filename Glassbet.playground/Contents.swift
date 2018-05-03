@@ -59,6 +59,7 @@ containerView.backgroundColor = .white
 let view = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
 view.backgroundColor = .red
 view.isHidden = true
+view.alpha = 0
 containerView.addSubview(view)
 
 PlaygroundPage.current.liveView = containerView
